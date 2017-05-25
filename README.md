@@ -36,4 +36,6 @@ $lissajous = new LissajousCurveDrawing(
 $lissajous->getDeltaTransformation(80, 80, 4)->writeImages('curve.gif', true);
 ```
 
-[Lissajous curve](https://github.com/lukashajdu/lissajous-curve-drawing/curve.gif "Curve")
+Example output:
+
+![Lissajous curve](https://github.com/lukashajdu/lissajous-curve-drawing/blob/master/curve.gif "Curve")
