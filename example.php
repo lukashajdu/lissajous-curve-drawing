@@ -13,10 +13,6 @@ $lissajous = new LissajousCurveDrawing(
     new ImagickPixel('rgb(0, 0, 0)'),
     100
 );
-
-
-$lissajous->getDeltaTransformation(80, 80, 4)->writeImages('curve.gif', true);
-
 ?>
 
 <h1>Lissajous curves with PHP and Imagick</h1>

@@ -116,6 +116,11 @@ class LissajousCurveDrawing
         $draw->setFillColor($this->secondaryColor);
         $draw->line(0, $this->canvasSize, 2 * $this->canvasSize, $this->canvasSize);
         $draw->line($this->canvasSize, 0, $this->canvasSize, 2 * $this->canvasSize);
+        $draw->annotation(
+            10,
+            (2 * $this->canvasSize) - 0.05 * 2 * $this->canvasSize,
+            sprintf('ω = %.2f, δ = %.2f', $omega, $delta)
+        );
 
         $draw->setFillColor($this->primaryColor);
         for ($angular = 0; $angular < 2 * M_PI; $angular += 0.001) {
