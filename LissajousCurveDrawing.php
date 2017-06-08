@@ -102,14 +102,14 @@ class LissajousCurveDrawing
     /**
      * Get a draw of Lissajous curve and axes
      *
-     * @param int $ampA
-     * @param int $ampB
+     * @param int $amp1
+     * @param int $amp2
      * @param float $omega
      * @param float $delta
      *
      * @return ImagickDraw
      */
-    private function getDraw($ampA, $ampB, $omega, $delta)
+    private function getDraw($amp1, $amp2, $omega, $delta)
     {
         $draw = new ImagickDraw();
 
@@ -124,7 +124,7 @@ class LissajousCurveDrawing
 
         $draw->setFillColor($this->primaryColor);
         for ($angular = 0; $angular < 2 * M_PI; $angular += 0.001) {
-            list($x, $y) = $this->lissajous($angular, $ampA, $ampB, $omega, $delta);
+            list($x, $y) = $this->lissajous($angular, $amp1, $amp2, $omega, $delta);
             $draw->point($x + $this->canvasSize, $y + $this->canvasSize);
         }
 
@@ -157,35 +157,35 @@ class LissajousCurveDrawing
      * Compute values of point on a curve
      *
      * @param float $timeT
-     * @param int $ampA
-     * @param int $ampB
+     * @param int $amp1
+     * @param int $amp2
      * @param float $omega
      * @param float $delta
      *
      * @return array
      */
-    private function lissajous($timeT, $ampA, $ampB, $omega = 1.0, $delta = 0.0)
+    private function lissajous($timeT, $amp1, $amp2, $omega = 1.0, $delta = 0.0)
     {
         return [
-            $ampA * sin($omega * $timeT + $delta),
-            $ampB * sin($timeT),
+            $amp1 * sin($timeT + $delta),
+            $amp2 * sin($omega * $timeT),
         ];
     }
 
     /**
      * Get delta transformation
      *
-     * @param int $ampA
-     * @param int $ampB
+     * @param int $amp1
+     * @param int $amp2
      * @param float $omega
      *
      * @return Imagick
      */
-    public function getDeltaTransformation($ampA, $ampB, $omega)
+    public function getDeltaTransformation($amp1, $amp2, $omega)
     {
         $gif = $this->getBlankCanvas();
         for ($delta = 0; $delta < 2 * M_PI; $delta += 0.5) {
-            $frame = $this->getFrame($this->getDraw($ampA, $ampB, $omega, $delta));
+            $frame = $this->getFrame($this->getDraw($amp1, $amp2, $omega, $delta));
             $gif->addImage($frame);
         }
 
@@ -195,16 +195,16 @@ class LissajousCurveDrawing
     /**
      * Get omega transformation
      *
-     * @param int $ampA
-     * @param int $ampB
+     * @param int $amp1
+     * @param int $amp2
      *
      * @return Imagick
      */
-    public function getOmegaTransformation($ampA, $ampB)
+    public function getOmegaTransformation($amp1, $amp2)
     {
         $gif = $this->getBlankCanvas();
         for ($omega = 0; $omega < 5 * M_PI; $omega += 0.1) {
-            $frame = $this->getFrame($this->getDraw($ampA, $ampB, $omega, 0));
+            $frame = $this->getFrame($this->getDraw($amp1, $amp2, $omega, 0));
             $gif->addImage($frame);
         }
 
@@ -214,17 +214,17 @@ class LissajousCurveDrawing
     /**
      * Get curve
      *
-     * @param int $ampA
-     * @param int $ampB
+     * @param int $amp1
+     * @param int $amp2
      * @param float $omega
      * @param float $delta
      *
      * @return Imagick
      */
-    public function getCurve($ampA, $ampB, $omega = 1.0, $delta = 0.0)
+    public function getCurve($amp1, $amp2, $omega = 1.0, $delta = 0.0)
     {
         $gif = $this->getBlankCanvas();
-        $frame = $this->getFrame($this->getDraw($ampA, $ampB, $omega, $delta));
+        $frame = $this->getFrame($this->getDraw($amp1, $amp2, $omega, $delta));
         $gif->addImage($frame);
 
         return $gif;

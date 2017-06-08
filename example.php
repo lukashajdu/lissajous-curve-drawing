@@ -37,18 +37,34 @@ $lissajous = new LissajousCurveDrawing(
     </tr>
     <tr>
         <td><b>Figure with 2 lobes</b><br>&omega;=2, &delta;=0</td>
+        <td><b>Figure with 3 lobes</b><br>&omega;=3, &delta;=&pi;/2</td>
         <td><b>Figure with 4 lobes</b><br>&omega;=4, &delta;=0</td>
-        <td><b>Figure with 6 lobes</b><br>&omega;=6, &delta;=0</td>
     </tr>
     <tr>
         <td>
             <img src="data:image/gif;base64,<?= base64_encode($lissajous->getCurve(80, 80, 2, 0)) ?>"/>
         </td>
         <td>
-            <img src="data:image/gif;base64,<?= base64_encode($lissajous->getCurve(80, 80, 4, 0)) ?>"/>
+            <img src="data:image/gif;base64,<?= base64_encode($lissajous->getCurve(80, 80, 3, M_PI_2)) ?>"/>
         </td>
         <td>
-            <img src="data:image/gif;base64,<?= base64_encode($lissajous->getCurve(80, 80, 6, 0)) ?>"/
+            <img src="data:image/gif;base64,<?= base64_encode($lissajous->getCurve(80, 80, 4, 0)) ?>"/
+        </td>
+    </tr>
+    <tr>
+        <td><b>Figure with 5 lobes</b><br>&omega;=5, &delta;=&pi;/2</td>
+        <td><b>Figure with 6 lobes</b><br>&omega;=6, &delta;=0</td>
+        <td><b>Figure with 7 lobes</b><br>&omega;=7, &delta;=&pi;/2</td>
+    </tr>
+    <tr>
+        <td>
+            <img src="data:image/gif;base64,<?= base64_encode($lissajous->getCurve(80, 80, 5, M_PI_2)) ?>"/>
+        </td>
+        <td>
+            <img src="data:image/gif;base64,<?= base64_encode($lissajous->getCurve(80, 80, 6, 0)) ?>"/>
+        </td>
+        <td>
+            <img src="data:image/gif;base64,<?= base64_encode($lissajous->getCurve(80, 80, 7, M_PI_2)) ?>"/
         </td>
     </tr>
 </table>
